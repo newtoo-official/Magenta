@@ -15,10 +15,10 @@ IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
-add_executable(main main.c ./native/native.h ./native/linux-gtk/linux_gtk.h)
+add_executable(magenta ./src/main.cc ./src/native/native.h ./src/native/linux-gtk/linux_gtk.h)
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
-  TARGET_LINK_LIBRARIES(main ${GTK3_LIBRARIES})
+  TARGET_LINK_LIBRARIES(magenta ${GTK3_LIBRARIES})
 
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")

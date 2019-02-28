@@ -1,0 +1,24 @@
+cmake_minimum_required(VERSION 2.8)
+
+project(Magenta)
+
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+
+  FIND_PACKAGE(PkgConfig REQUIRED)
+
+  PKG_CHECK_MODULES(GTK3 REQUIRED gtk+-3.0)
+
+  INCLUDE_DIRECTORIES(${GTK3_INCLUDE_DIRS})
+  LINK_DIRECTORIES(${GTK3_LIBRARY_DIRS})
+
+  ADD_DEFINITIONS(${GTK3_CFLAGS_OTHER})
+
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+
+add_executable(main main.c ./native/native.h ./native/linux-gtk/linux_gtk.h)
+
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+
+  TARGET_LINK_LIBRARIES(main ${GTK3_LIBRARIES})
+
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
